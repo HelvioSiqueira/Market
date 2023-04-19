@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Market</string>
+
+    <string name="txt_search_product">Search Product</string>
+    <string name="txt_find_your_product">Find your Product</string>
+
+    <string name="txt_apple">Apple</string>
+    <string name="txt_samsung">Samsung</string>
+    <string name="txt_huawei">Huawei</string>
+    <string name="txt_oppo">OPPO</string>
 </resources>
