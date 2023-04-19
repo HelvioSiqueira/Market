@@ -1,6 +1,7 @@
 package com.helvio.market.di;
 
 import com.helvio.market.BuildConfig;
+import com.helvio.market.data.remote.DummyJsonApi;
 
 import java.util.concurrent.TimeUnit;
 
@@ -12,6 +13,7 @@ import dagger.hilt.components.SingletonComponent;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 @dagger.Module
 @InstallIn(SingletonComponent.class)
@@ -39,9 +41,16 @@ public abstract class Module {
                 .addInterceptor(interceptor).build();
     }
 
-    public Retrofit.Builder provideRetrofit(OkHttpClient okHttpClient){
+    @Provides
+    @Singleton
+    public DummyJsonApi provideRetrofit(OkHttpClient okHttpClient) {
 
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://dummyjson.com/")
+                .client(okHttpClient)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
 
-        return new Retrofit.Builder();
+        return retrofit.create(DummyJsonApi.class);
     }
 }
