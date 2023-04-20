@@ -1,5 +1,7 @@
 package com.helvio.market.domain.model;
 
+import androidx.annotation.Nullable;
+
 import java.util.ArrayList;
 
 public class Product{
@@ -14,4 +16,9 @@ public class Product{
     public String category;
     public String thumbnail;
     public ArrayList<String> images;
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        return super.equals(obj);
+    }
 }
