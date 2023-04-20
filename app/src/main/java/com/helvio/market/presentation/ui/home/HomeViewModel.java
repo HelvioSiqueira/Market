@@ -28,6 +28,8 @@ public class HomeViewModel extends ViewModel {
 
     public HomeViewModel(ApiRepository repository){
         this.repository = repository;
+
+
     }
 
     MutableLiveData<List<Product>> products = new MutableLiveData<>();

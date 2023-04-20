@@ -1,6 +1,7 @@
 package com.helvio.market.presentation.ui.home;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,20 +9,16 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.tabs.TabLayout;
-import com.helvio.market.data.remote.api.DummyJsonApi;
 import com.helvio.market.data.remote.api.DummyJsonApiImpl;
 import com.helvio.market.data.remote.repository.ApiRepository;
 import com.helvio.market.databinding.HomeFragmentBinding;
-import com.helvio.market.domain.model.Products;
 import com.helvio.market.presentation.adapter.ProductsAdapter;
 
 import dagger.hilt.android.AndroidEntryPoint;
-import retrofit2.Call;
 
 @AndroidEntryPoint
 public class HomeFragment extends Fragment {
@@ -33,7 +30,7 @@ public class HomeFragment extends Fragment {
     TabLayout tabLayout;
 
     RecyclerView rvProducts;
-    ProductsAdapter productsAdapter = new ProductsAdapter();
+    ProductsAdapter productsAdapter;
 
     @Nullable
     @Override
@@ -48,6 +45,7 @@ public class HomeFragment extends Fragment {
         viewModel.getAllProducts();
 
         viewModel.products.observe(getViewLifecycleOwner(), products -> {
+            Log.d("HSV", products.toString());
             productsAdapter.submitList(products);
         });
 
@@ -55,7 +53,8 @@ public class HomeFragment extends Fragment {
     }
 
     private void setupRecyclerView() {
+        productsAdapter = new ProductsAdapter();
         rvProducts.setAdapter(productsAdapter);
-        rvProducts.setLayoutManager(new LinearLayoutManager(requireContext()));
+        rvProducts.setLayoutManager(new GridLayoutManager(requireContext(), 2));
     }
 }

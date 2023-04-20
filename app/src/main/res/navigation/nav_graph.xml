@@ -16,5 +16,9 @@
     <fragment
         android:id="@+id/productFragment"
         android:name="com.helvio.market.presentation.ui.product.ProductFragment"
-        android:label="ProductFragment" />
+        android:label="ProductFragment">
+        <argument
+            android:name="Product"
+            app:argType="com.helvio.market.domain.model.Product" />
+    </fragment>
 </navigation>

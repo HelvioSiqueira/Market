@@ -16,7 +16,7 @@ import com.helvio.market.domain.model.Product;
 public class ProductsAdapter extends ListAdapter<Product, ProductsAdapter.ProductsViewHolder> {
 
     public ProductsAdapter() {
-        super(ProductsAdapter);
+        super(DIFF_CALLBACK);
     }
 
     @NonNull
@@ -34,25 +34,26 @@ public class ProductsAdapter extends ListAdapter<Product, ProductsAdapter.Produc
     }
 
     static class ProductsViewHolder extends RecyclerView.ViewHolder {
-
-        private ItemProductBinding binding;
+        private final ItemProductBinding binding;
 
         public ProductsViewHolder(View itemView) {
             super(itemView);
+
+            binding = ItemProductBinding.bind(itemView);
         }
 
         void bind(Product itemProduct) {
 
-            binding.txtNameProduct.setText(itemProduct.title);
-            binding.txtTypeProduct.setText(itemProduct.category);
-            binding.txtPriceProduct.setText(itemProduct.price);
+            binding.txtNameProduct.setText(itemProduct.getTitle());
+            binding.txtTypeProduct.setText(itemProduct.getCategory());
+            binding.txtPriceProduct.setText(itemProduct.getPrice());
         }
     }
 
-    private static final DiffUtil.ItemCallback<Product> ProductsAdapter = new DiffUtil.ItemCallback<Product>() {
+    public static final DiffUtil.ItemCallback<Product> DIFF_CALLBACK  = new DiffUtil.ItemCallback<Product>() {
         @Override
         public boolean areItemsTheSame(@NonNull Product oldItem, @NonNull Product newItem) {
-            return oldItem.id == newItem.id;
+            return oldItem.getId() == newItem.getId();
         }
 
         @Override
