@@ -20,6 +20,31 @@ public class Product implements Serializable {
     public String thumbnail;
     public ArrayList<String> images;
 
+    public Product(
+            int id,
+            String title,
+            String description,
+            int price,
+            double discountPercentage,
+            double rating, int stock,
+            String brand,
+            String category,
+            String thumbnail,
+            ArrayList<String> images
+    ) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.price = price;
+        this.discountPercentage = discountPercentage;
+        this.rating = rating;
+        this.stock = stock;
+        this.brand = brand;
+        this.category = category;
+        this.thumbnail = thumbnail;
+        this.images = images;
+    }
+
     public int getId() {
         return id;
     }

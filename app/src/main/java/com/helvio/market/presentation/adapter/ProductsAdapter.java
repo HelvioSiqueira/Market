@@ -44,9 +44,12 @@ public class ProductsAdapter extends ListAdapter<Product, ProductsAdapter.Produc
 
         void bind(Product itemProduct) {
 
-            binding.txtNameProduct.setText(itemProduct.getTitle());
+            String firstChar = itemProduct.getTitle().substring(0, 1).toUpperCase();
+            String titleCapitalized = firstChar + itemProduct.getTitle().substring(1);
+
+            binding.txtNameProduct.setText(titleCapitalized);
             binding.txtTypeProduct.setText(itemProduct.getCategory());
-            binding.txtPriceProduct.setText(itemProduct.getPrice());
+            binding.txtPriceProduct.setText(Integer.toString(itemProduct.getPrice()));
         }
     }
 
