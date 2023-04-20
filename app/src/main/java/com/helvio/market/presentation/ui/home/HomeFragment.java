@@ -35,7 +35,7 @@ public class HomeFragment extends Fragment {
 
     TabLayout tabLayout;
 
-    ProductsAdapter productsAdapter = new ProductsAdapter();
+    ProductsAdapter productsAdapter;
 
     RecyclerView rvProducts;
 
@@ -60,6 +60,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void setupRecyclerView() {
+        productsAdapter = new ProductsAdapter(requireContext());
         rvProducts.setAdapter(productsAdapter);
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(requireContext(), 2);
