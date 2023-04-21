@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,10 +20,7 @@ import com.helvio.market.R;
 import com.helvio.market.data.remote.api.DummyJsonApiImpl;
 import com.helvio.market.data.remote.repository.ApiRepository;
 import com.helvio.market.databinding.HomeFragmentBinding;
-import com.helvio.market.domain.model.Product;
 import com.helvio.market.presentation.adapter.ProductsAdapter;
-
-import java.util.List;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -59,9 +57,14 @@ public class HomeFragment extends Fragment {
 
         productsAdapter.setOnItemClickListener(item -> {
             Log.d("HSV", item.title);
-        });
 
-        //this.navController.navigate(R.id.action_homeFragment_to_productFragment);
+            Bundle bundle = new Bundle();
+            bundle.putInt("productId", item.getId());
+
+            NavDirections action =
+                    HomeFragmentDirections.actionHomeFragmentToProductFragment(item.getId());
+            Navigation.findNavController(binding.getRoot()).navigate(action);
+        });
 
         return binding.getRoot();
     }

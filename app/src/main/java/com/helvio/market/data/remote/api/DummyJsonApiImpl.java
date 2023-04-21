@@ -1,6 +1,7 @@
 package com.helvio.market.data.remote.api;
 
 import com.helvio.market.BuildConfig;
+import com.helvio.market.domain.model.Product;
 import com.helvio.market.domain.model.Products;
 
 import java.util.concurrent.TimeUnit;
@@ -38,5 +39,10 @@ public class DummyJsonApiImpl implements DummyJsonApi {
     public Call<Products> getProducts() {
 
         return api.getProducts();
+    }
+
+    @Override
+    public Call<Product> getProductById(int id){
+        return api.getProductById(id);
     }
 }
