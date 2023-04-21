@@ -15,10 +15,12 @@ import com.bumptech.glide.Glide;
 import com.helvio.market.R;
 import com.helvio.market.databinding.ItemProductBinding;
 import com.helvio.market.domain.model.Product;
+import com.helvio.market.presentation.ui.home.OnItemClickListener;
 
 public class ProductsAdapter extends ListAdapter<Product, ProductsAdapter.ProductsViewHolder> {
 
     public Context context;
+    private OnItemClickListener listener;
 
     public ProductsAdapter(Context context) {
         super(DIFF_CALLBACK);
@@ -38,6 +40,12 @@ public class ProductsAdapter extends ListAdapter<Product, ProductsAdapter.Produc
     public void onBindViewHolder(@NonNull ProductsViewHolder holder, int position) {
         Product item = getItem(position);
         holder.bind(item, context);
+
+        holder.itemView.setOnClickListener(view -> {
+            if(listener != null){
+                listener.onItemClick(item);
+            }
+        });
     }
 
     static class ProductsViewHolder extends RecyclerView.ViewHolder {
@@ -62,6 +70,10 @@ public class ProductsAdapter extends ListAdapter<Product, ProductsAdapter.Produc
             binding.txtTypeProduct.setText(itemProduct.getCategory());
             binding.txtPriceProduct.setText(Integer.toString(itemProduct.getPrice()));
         }
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener){
+        this.listener = listener;
     }
 
     public static final DiffUtil.ItemCallback<Product> DIFF_CALLBACK  = new DiffUtil.ItemCallback<Product>() {

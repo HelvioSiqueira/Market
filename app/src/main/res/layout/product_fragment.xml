@@ -54,6 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@id/txtTypeProduct"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="IPhone X" />
@@ -63,6 +64,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toTopOf="@id/txtBrandProduct"
             android:textColor="@color/gray"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -85,6 +87,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
+            app:layout_constraintBottom_toTopOf="@id/txtDetails"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txtTypeProduct"
@@ -95,6 +98,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
+            app:layout_constraintBottom_toTopOf="@id/txtDescriptionProduct"
             android:textColor="@color/purple"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -117,13 +121,14 @@
             android:ellipsize="end"
             android:maxLines="3"
             android:textColor="@color/gray"
+            app:layout_constraintBottom_toTopOf="@id/btnAddToCart"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txtDetails"
             tools:text="SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ..." />
 
         <Button
-            android:id="@+id/BtnAddToCart"
+            android:id="@+id/btnAddToCart"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_marginTop="42dp"
