@@ -42,7 +42,7 @@ public class ProductsAdapter extends ListAdapter<Product, ProductsAdapter.Produc
         holder.bind(item, context);
 
         holder.itemView.setOnClickListener(view -> {
-            if(listener != null){
+            if (listener != null) {
                 listener.onItemClick(item);
             }
         });
@@ -68,15 +68,15 @@ public class ProductsAdapter extends ListAdapter<Product, ProductsAdapter.Produc
 
             binding.txtNameProduct.setText(titleCapitalized);
             binding.txtTypeProduct.setText(itemProduct.getCategory());
-            binding.txtPriceProduct.setText(Integer.toString(itemProduct.getPrice()));
+            binding.txtPriceProduct.setText(context.getResources().getString(R.string.txt_price, itemProduct.getPrice()));
         }
     }
 
-    public void setOnItemClickListener(OnItemClickListener listener){
+    public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
 
-    public static final DiffUtil.ItemCallback<Product> DIFF_CALLBACK  = new DiffUtil.ItemCallback<Product>() {
+    public static final DiffUtil.ItemCallback<Product> DIFF_CALLBACK = new DiffUtil.ItemCallback<Product>() {
         @Override
         public boolean areItemsTheSame(@NonNull Product oldItem, @NonNull Product newItem) {
             return oldItem.getId() == newItem.getId();

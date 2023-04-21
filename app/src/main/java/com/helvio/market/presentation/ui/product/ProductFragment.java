@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
+import com.helvio.market.R;
 import com.helvio.market.data.remote.api.DummyJsonApiImpl;
 import com.helvio.market.data.remote.repository.ApiRepository;
 import com.helvio.market.databinding.ProductFragmentBinding;
@@ -30,10 +31,15 @@ public class ProductFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         binding = ProductFragmentBinding.inflate(inflater);
+        ImageView imgBack = binding.imgBack;
 
         int productId = ProductFragmentArgs.fromBundle(getArguments()).getProductId();
 
         viewModel.getProductById(productId);
+
+        imgBack.setOnClickListener(view -> {
+            requireActivity().onBackPressed();
+        });
 
         viewModel.product.observe(getViewLifecycleOwner(), this::fillProductFragment);
 
@@ -51,6 +57,6 @@ public class ProductFragment extends Fragment {
         binding.txtTypeProduct.setText(product.getCategory());
         binding.txtBrandProduct.setText(product.getBrand());
         binding.txtDescriptionProduct.setText(product.getDescription());
-        binding.txtPriceProduct.setText(Integer.toString(product.getPrice()));
+        binding.txtPriceProduct.setText(requireContext().getResources().getString(R.string.txt_price, product.getPrice()));
     }
 }
