@@ -12,4 +12,10 @@
     <string name="txt_add_to_cart">Add to cart</string>
 
     <string name="txt_price">$%d</string>
+    <string name="open_drawer">Open</string>
+    <string name="close_drawer">Close</string>
+    <string name="txt_home">Home</string>
+    <string name="txt_cart">Carrinho</string>
+    <string name="txt_wish_list">Wish List</string>
+    <string name="text_welcome">Bem Vindo</string>
 </resources>

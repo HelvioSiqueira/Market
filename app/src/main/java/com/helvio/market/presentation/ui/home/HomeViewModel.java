@@ -39,8 +39,9 @@ public class HomeViewModel extends ViewModel {
         call.enqueue(new Callback<Products>() {
             @Override
             public void onResponse(@NonNull Call<Products> call, @NonNull Response<Products> response) {
-                assert response.body() != null;
-                products.setValue(response.body().products);
+                if (response.body() != null) {
+                    products.setValue(response.body().products);
+                }
             }
 
             @Override

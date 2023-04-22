@@ -7,9 +7,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDirections;
@@ -22,6 +24,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.helvio.market.R;
 import com.helvio.market.data.remote.api.DummyJsonApiImpl;
 import com.helvio.market.data.remote.repository.ApiRepository;
+import com.helvio.market.databinding.ActivityMainBinding;
 import com.helvio.market.databinding.HomeFragmentBinding;
 import com.helvio.market.domain.model.Product;
 import com.helvio.market.domain.model.Products;
@@ -53,8 +56,11 @@ public class HomeFragment extends Fragment {
         HomeFragmentBinding binding = HomeFragmentBinding.inflate(inflater);
 
         textInputEditTextSearch = binding.textInputEditTextSearch;
-        TabLayout tabLayout = binding.tabLayout;
         rvProducts = binding.rvProducts;
+        TabLayout tabLayout = binding.tabLayout;
+        ImageView imgSandwich = binding.imgSandwich;
+
+        DrawerLayout drawerLayout = requireActivity().findViewById(R.id.drawerLayout);
 
         viewModel.getAllProducts();
 
@@ -69,6 +75,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
             }
+
             @Override
             public void afterTextChanged(Editable editable) {
                 searchProductsList =
@@ -136,6 +143,10 @@ public class HomeFragment extends Fragment {
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
             }
+        });
+
+        imgSandwich.setOnClickListener(item -> {
+           drawerLayout.open();
         });
 
         productsAdapter.setOnItemClickListener(item -> {
