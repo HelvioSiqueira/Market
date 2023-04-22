@@ -18,4 +18,5 @@
     <string name="txt_cart">Carrinho</string>
     <string name="txt_wish_list">Wish List</string>
     <string name="text_welcome">Bem Vindo</string>
+    <string name="txt_your_wish_list">Your Wish List</string>
 </resources>

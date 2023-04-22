@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.helvio.market.R;
+import com.helvio.market.WishListHelper;
 import com.helvio.market.data.remote.api.DummyJsonApiImpl;
 import com.helvio.market.data.remote.repository.ApiRepository;
 import com.helvio.market.databinding.ProductFragmentBinding;
@@ -26,12 +27,15 @@ public class ProductFragment extends Fragment {
 
     private ProductFragmentBinding binding;
 
+    private Product receiveProduct;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         binding = ProductFragmentBinding.inflate(inflater);
         ImageView imgBack = binding.imgBack;
+        ImageView imgHeart = binding.imgHeart;
 
         int productId = ProductFragmentArgs.fromBundle(getArguments()).getProductId();
 
@@ -41,7 +45,14 @@ public class ProductFragment extends Fragment {
             requireActivity().onBackPressed();
         });
 
-        viewModel.product.observe(getViewLifecycleOwner(), this::fillProductFragment);
+        imgHeart.setOnClickListener(view -> {
+            WishListHelper.addProductInWishList(receiveProduct);
+        });
+
+        viewModel.product.observe(getViewLifecycleOwner(), product -> {
+            receiveProduct = product;
+            fillProductFragment(product);
+        });
 
         return binding.getRoot();
     }
