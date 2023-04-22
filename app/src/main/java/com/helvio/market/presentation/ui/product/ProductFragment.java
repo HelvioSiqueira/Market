@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -12,11 +13,13 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
+import com.helvio.market.CartProductHelper;
 import com.helvio.market.R;
 import com.helvio.market.WishListHelper;
 import com.helvio.market.data.remote.api.DummyJsonApiImpl;
 import com.helvio.market.data.remote.repository.ApiRepository;
 import com.helvio.market.databinding.ProductFragmentBinding;
+import com.helvio.market.domain.model.CartProduct;
 import com.helvio.market.domain.model.Product;
 
 public class ProductFragment extends Fragment {
@@ -36,6 +39,7 @@ public class ProductFragment extends Fragment {
         binding = ProductFragmentBinding.inflate(inflater);
         ImageView imgBack = binding.imgBack;
         ImageView imgHeart = binding.imgHeart;
+        Button btnAddToCart = binding.btnAddToCart;
 
         int productId = ProductFragmentArgs.fromBundle(getArguments()).getProductId();
 
@@ -47,6 +51,10 @@ public class ProductFragment extends Fragment {
 
         imgHeart.setOnClickListener(view -> {
             WishListHelper.addProductInWishList(receiveProduct);
+        });
+
+        btnAddToCart.setOnClickListener(view -> {
+            CartProductHelper.addProductInCart(toCartProduct(receiveProduct));
         });
 
         viewModel.product.observe(getViewLifecycleOwner(), product -> {
@@ -69,5 +77,17 @@ public class ProductFragment extends Fragment {
         binding.txtBrandProduct.setText(product.getBrand());
         binding.txtDescriptionProduct.setText(product.getDescription());
         binding.txtPriceProduct.setText(requireContext().getResources().getString(R.string.txt_price, product.getPrice()));
+    }
+
+    private CartProduct toCartProduct(Product product){
+
+        return new CartProduct(
+                product.getId(),
+                product.getTitle(),
+                product.getPrice(),
+                product.getBrand(),
+                product.getThumbnail(),
+                1
+        );
     }
 }

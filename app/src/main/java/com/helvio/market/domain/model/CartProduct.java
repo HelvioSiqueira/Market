@@ -1,5 +1,6 @@
 package com.helvio.market.domain.model;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 public class CartProduct {
@@ -9,9 +10,9 @@ public class CartProduct {
     public int price;
     public String brand;
     public String thumbnail;
-    public String countInCart;
+    public int countInCart;
 
-    public CartProduct(int id, String title, int price, String brand, String thumbnail, String countInCart) {
+    public CartProduct(int id, String title, int price, String brand, String thumbnail, int countInCart) {
         this.id = id;
         this.title = title;
         this.price = price;
@@ -60,12 +61,28 @@ public class CartProduct {
         this.thumbnail = thumbnail;
     }
 
-    public String getCountInCart() {
+    public int getCountInCart() {
         return countInCart;
     }
 
-    public void setCountInCart(String countInCart) {
+    public void setCountInCart(int countInCart) {
         this.countInCart = countInCart;
+    }
+
+    public void addOne(){
+        countInCart++;
+    }
+
+    public void removeOne(){
+        if(countInCart > 0){
+            countInCart--;
+        }
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return title + countInCart;
     }
 
     @Override

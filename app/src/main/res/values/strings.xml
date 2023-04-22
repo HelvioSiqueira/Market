@@ -12,6 +12,7 @@
     <string name="txt_add_to_cart">Add to cart</string>
 
     <string name="txt_price">$%d</string>
+    <string name="txt_total_price">$%.2f</string>
     <string name="open_drawer">Open</string>
     <string name="close_drawer">Close</string>
     <string name="txt_home">Home</string>

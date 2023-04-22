@@ -150,7 +150,7 @@ public class HomeFragment extends Fragment {
         });
 
         productsAdapter.setOnItemClickListener(item -> {
-            Log.d("HSV", item.title);
+            Log.d("HSV", item.getTitle());
 
             NavDirections action =
                     HomeFragmentDirections.actionHomeFragmentToProductFragment(item.getId());

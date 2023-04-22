@@ -14,8 +14,13 @@ import com.bumptech.glide.Glide;
 import com.helvio.market.R;
 import com.helvio.market.databinding.ItemProductCartBinding;
 import com.helvio.market.domain.model.CartProduct;
+import com.helvio.market.presentation.ui.cart.OnAddItemClicked;
+import com.helvio.market.presentation.ui.cart.OnRemoveItemClicked;
 
 public class CartProductsAdapter extends ListAdapter<CartProduct, CartProductsAdapter.CartProductsViewHolder> {
+
+    private OnAddItemClicked addListener;
+    private OnRemoveItemClicked removeListener;
 
     public Context context;
 
@@ -38,6 +43,18 @@ public class CartProductsAdapter extends ListAdapter<CartProduct, CartProductsAd
     public void onBindViewHolder(@NonNull CartProductsViewHolder holder, int position) {
         CartProduct itemProduct = getItem(position);
         holder.bind(itemProduct, context);
+
+        holder.binding.cardImgMin.setOnClickListener(view -> {
+            if (removeListener != null) {
+                removeListener.onRemoveProductClick(itemProduct);
+            }
+        });
+
+        holder.binding.cardImgPlus.setOnClickListener(view -> {
+            if (addListener != null) {
+                addListener.onAddProductClick(itemProduct);
+            }
+        });
     }
 
     static class CartProductsViewHolder extends RecyclerView.ViewHolder {
@@ -55,18 +72,19 @@ public class CartProductsAdapter extends ListAdapter<CartProduct, CartProductsAd
             Glide.with(context).load(itemProduct.getThumbnail()).into(binding.imgProduct);
             binding.txtNameProduct.setText(itemProduct.getTitle());
             binding.txtBrand.setText(itemProduct.getBrand());
+            binding.txtQuantityInCart.setText(Integer.toString(itemProduct.getCountInCart()));
             binding.txtPriceProduct.setText(
                     context.getResources().getString(R.string.txt_price, itemProduct.getPrice())
             );
-
-            binding.cardImgMin.setOnClickListener(item -> {
-
-            });
-
-            binding.cardImgPlus.setOnClickListener(item -> {
-
-            });
         }
+    }
+
+    public void setOnAddItemListener(OnAddItemClicked listener) {
+        addListener = listener;
+    }
+
+    public void setOnRemoveItemListener(OnRemoveItemClicked listener) {
+        removeListener = listener;
     }
 
     public static final DiffUtil.ItemCallback<CartProduct> DIFF_CALLBACK = new DiffUtil.ItemCallback<CartProduct>() {
