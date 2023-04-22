@@ -12,6 +12,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:padding="8dp"
         android:src="@drawable/sandwich"
         app:layout_constraintBottom_toBottomOf="@id/txtWishList"
         app:layout_constraintEnd_toStartOf="@id/txtWishList"
@@ -59,9 +61,9 @@
             android:layout_height="wrap_content"
             android:text="@string/txt_total_of_purchase"
             android:textColor="@color/gray"
-            app:layout_constraintEnd_toStartOf="@id/btnFinish"
             android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@+id/txtTotalPrice"
+            app:layout_constraintEnd_toStartOf="@id/btnFinish"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -79,11 +81,12 @@
         <Button
             android:id="@+id/btnFinish"
             android:layout_width="wrap_content"
-            android:backgroundTint="@color/easy_purple"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
             android:layout_marginEnd="16dp"
+            android:backgroundTint="@color/easy_purple"
             android:text="Finish"
+            android:textSize="24sp"
+            android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

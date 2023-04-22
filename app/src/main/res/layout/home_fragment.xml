@@ -5,11 +5,13 @@
     android:layout_height="match_parent"
     android:background="@color/easy_gray"
     android:paddingHorizontal="20dp"
-    android:paddingTop="20dp">
+    android:paddingTop="10dp">
 
     <ImageView
         android:id="@+id/imgSandwich"
         android:layout_width="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:padding="8dp"
         android:layout_height="wrap_content"
         android:src="@drawable/sandwich"
         app:layout_constraintBottom_toBottomOf="@id/textInputLayoutSearch"
@@ -44,25 +46,33 @@
         android:id="@+id/txtFind"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/guideLine1"
         android:fontFamily="@font/raleway_bold"
         android:text="@string/txt_find_your_product"
         android:textSize="36sp"
-        app:layout_constraintBottom_toTopOf="@id/tabLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textInputLayoutSearch" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideLine1"
+        android:layout_width="wrap_content"
+        app:layout_constraintGuide_percent="0.22"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content"/>
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@color/easy_gray"
+        app:layout_constraintVertical_chainStyle="packed"
         app:layout_constraintBottom_toTopOf="@id/rvProducts"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtFind"
         app:tabGravity="fill"
         app:tabIndicatorColor="@color/purple"
         app:tabMode="fixed"
+        app:layout_constraintTop_toBottomOf="@id/guideLine1"
         app:tabRippleColor="@color/purple"
         app:tabSelectedTextColor="@color/purple"
         app:tabTextAppearance="@style/MyCustomTextAppearance"
@@ -93,7 +103,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvProducts"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

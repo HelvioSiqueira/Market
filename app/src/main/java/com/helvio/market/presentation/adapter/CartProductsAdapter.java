@@ -72,7 +72,7 @@ public class CartProductsAdapter extends ListAdapter<CartProduct, CartProductsAd
             Glide.with(context).load(itemProduct.getThumbnail()).into(binding.imgProduct);
             binding.txtNameProduct.setText(itemProduct.getTitle());
             binding.txtBrand.setText(itemProduct.getBrand());
-            binding.txtQuantityInCart.setText(Integer.toString(itemProduct.getCountInCart()));
+            binding.txtCount.setText(Integer.toString(itemProduct.getCountInCart()));
             binding.txtPriceProduct.setText(
                     context.getResources().getString(R.string.txt_price, itemProduct.getPrice())
             );
