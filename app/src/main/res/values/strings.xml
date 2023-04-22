@@ -15,8 +15,11 @@
     <string name="open_drawer">Open</string>
     <string name="close_drawer">Close</string>
     <string name="txt_home">Home</string>
-    <string name="txt_cart">Carrinho</string>
+    <string name="txt_cart">Cart</string>
     <string name="txt_wish_list">Wish List</string>
-    <string name="text_welcome">Bem Vindo</string>
+    <string name="text_welcome">Welcome</string>
     <string name="txt_your_wish_list">Your Wish List</string>
+    <string name="txt_quantity_in_cart">Quantity in cart</string>
+    <string name="txt_your_cart">Your Cart</string>
+    <string name="txt_total_of_purchase">Total of purchase:</string>
 </resources>

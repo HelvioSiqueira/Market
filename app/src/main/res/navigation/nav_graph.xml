@@ -37,13 +37,15 @@
     <fragment
         android:id="@+id/cartFragment"
         android:name="com.helvio.market.presentation.ui.cart.CartFragment"
-        android:label="CartFragment" />
+        android:label="CartFragment"
+        tools:layout="@layout/cart_fragment"/>
 
 
     <fragment
         android:id="@+id/wishListFragment"
         android:name="com.helvio.market.presentation.ui.wishlist.WishListFragment"
-        android:label="WishListFragment" />
+        android:label="WishListFragment"
+        tools:layout="@layout/wish_list_fragment"/>
 
 
 </navigation>
