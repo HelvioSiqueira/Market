@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/easy_gray"
     android:paddingTop="20dp">
 
     <ImageView
@@ -14,7 +13,7 @@
         android:layout_marginStart="20dp"
         android:background="?android:attr/selectableItemBackground"
         android:padding="8dp"
-        android:src="@drawable/sandwich"
+        style="@style/StyleSandwich"
         app:layout_constraintBottom_toBottomOf="@id/txtWishList"
         app:layout_constraintEnd_toStartOf="@id/txtWishList"
         app:layout_constraintStart_toStartOf="parent"
