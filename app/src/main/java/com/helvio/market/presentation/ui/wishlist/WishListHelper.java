@@ -1,6 +1,4 @@
-package com.helvio.market;
-
-import android.util.Log;
+package com.helvio.market.presentation.ui.wishlist;
 
 import com.helvio.market.domain.model.Product;
 
@@ -8,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+// Classe que para armazenar e operar sobre os produtos adicionados na WishList
+// ela é instancia da na MainActivity
 public class WishListHelper {
 
     public static List<Product> wishProductsList = new ArrayList<>();

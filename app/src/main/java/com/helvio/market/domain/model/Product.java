@@ -8,17 +8,17 @@ import java.util.ArrayList;
 
 public class Product implements Serializable {
 
-    int id;
-    String title;
-    String description;
-    int price;
-    double discountPercentage;
-    double rating;
-    int stock;
-    String brand;
-    String category;
-    String thumbnail;
-    ArrayList<String> images;
+    private int id;
+    private String title;
+    private String description;
+    private int price;
+    private double discountPercentage;
+    private double rating;
+    private int stock;
+    private String brand;
+    private String category;
+    private String thumbnail;
+    private ArrayList<String> images;
 
     public Product(
             int id,

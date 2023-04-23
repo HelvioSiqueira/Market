@@ -1,4 +1,4 @@
-package com.helvio.market;
+package com.helvio.market.presentation.ui.cart;
 
 import android.util.Log;
 
@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+// Classe que para armazenar e operar sobre os produtos adicionados no carrinho
+// ela é instancia da na MainActivity
 public class CartProductHelper {
 
     public static List<CartProduct> cartProducts = new ArrayList<>();

@@ -11,6 +11,8 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
 import com.helvio.market.databinding.ActivityMainBinding;
+import com.helvio.market.presentation.ui.cart.CartProductHelper;
+import com.helvio.market.presentation.ui.wishlist.WishListHelper;
 
 import dagger.hilt.android.AndroidEntryPoint;
 

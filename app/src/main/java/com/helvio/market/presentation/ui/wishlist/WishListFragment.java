@@ -3,7 +3,6 @@ package com.helvio.market.presentation.ui.wishlist;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,11 +19,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.helvio.market.R;
-import com.helvio.market.WishListHelper;
 import com.helvio.market.databinding.WishListFragmentBinding;
 import com.helvio.market.domain.model.Product;
 import com.helvio.market.presentation.adapter.ProductsAdapter;
-import com.helvio.market.presentation.ui.home.HomeFragmentDirections;
 
 import java.util.List;
 import java.util.Locale;

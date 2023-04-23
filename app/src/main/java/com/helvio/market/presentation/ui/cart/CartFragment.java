@@ -14,7 +14,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.helvio.market.CartProductHelper;
 import com.helvio.market.R;
 import com.helvio.market.databinding.CartFragmentBinding;
 import com.helvio.market.presentation.adapter.CartProductsAdapter;

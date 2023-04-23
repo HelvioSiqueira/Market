@@ -1,8 +1,6 @@
 package com.helvio.market.presentation.ui.product;
 
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,9 +14,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
-import com.helvio.market.CartProductHelper;
+import com.helvio.market.presentation.ui.cart.CartProductHelper;
 import com.helvio.market.R;
-import com.helvio.market.WishListHelper;
+import com.helvio.market.presentation.ui.wishlist.WishListHelper;
 import com.helvio.market.data.remote.api.DummyJsonApiImpl;
 import com.helvio.market.data.remote.repository.ApiRepository;
 import com.helvio.market.databinding.ProductFragmentBinding;
