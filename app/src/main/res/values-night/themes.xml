@@ -17,6 +17,8 @@
         <item name="android:textColor">@color/easy_gray</item>
 
         <item name="android:windowLightStatusBar">true</item>
+
+        <item name="android:windowBackground">@color/night_gray</item>
     </style>
 
     <style name="MyCustomTextAppearance" parent="TextAppearance.Design.Tab">
@@ -34,6 +36,10 @@
 
     <style name="StyleBack">
         <item name="android:src">@drawable/arrow_night</item>
+    </style>
+
+    <style name="BackgroundParentStyle">
+        <item name="android:background">@color/night_gray</item>
     </style>
 
 </resources>

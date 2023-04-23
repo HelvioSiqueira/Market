@@ -1,5 +1,7 @@
 package com.helvio.market.presentation.ui.home;
 
+import android.content.Context;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -30,6 +32,8 @@ import com.helvio.market.domain.model.Product;
 import com.helvio.market.domain.model.Products;
 import com.helvio.market.presentation.adapter.ProductsAdapter;
 
+import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -46,9 +50,22 @@ public class HomeFragment extends Fragment {
     private RecyclerView rvProducts;
     private ProductsAdapter productsAdapter;
 
-    private List<Product> productList;
-    private List<Product> brandProductsList;
-    private List<Product> searchProductsList;
+    private List<Product> productList = new ArrayList<>();
+    private List<Product> brandProductsList = new ArrayList<>();
+    private List<Product> searchProductsList = new ArrayList<>();
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        int currentLightMode = requireContext().getResources().getConfiguration().uiMode;
+
+        if (currentLightMode == 33) {
+            changeStatusBarColor(R.color.night_gray);
+        } else {
+            changeStatusBarColor(R.color.white);
+        }
+    }
 
     @Nullable
     @Override
@@ -90,50 +107,7 @@ public class HomeFragment extends Fragment {
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                switch (tab.getPosition()) {
-
-                    case 0:
-                        List<Product> appleProducts =
-                                productList.stream()
-                                        .filter(product -> product.getBrand().equals("Apple"))
-                                        .collect(Collectors.toList());
-
-                        textInputEditTextSearch.setText("");
-                        brandProductsList = appleProducts;
-                        productsAdapter.submitList(appleProducts);
-                        break;
-                    case 1:
-                        List<Product> samsungProducts =
-                                productList.stream()
-                                        .filter(product -> product.getBrand().equals("Samsung"))
-                                        .collect(Collectors.toList());
-
-                        textInputEditTextSearch.setText("");
-                        brandProductsList = samsungProducts;
-                        productsAdapter.submitList(samsungProducts);
-                        break;
-                    case 2:
-                        List<Product> huaweiProducts =
-                                productList.stream()
-                                        .filter(product -> product.getBrand().equals("Huawei"))
-                                        .collect(Collectors.toList());
-
-                        textInputEditTextSearch.setText("");
-                        brandProductsList = huaweiProducts;
-                        productsAdapter.submitList(huaweiProducts);
-                        break;
-                    case 3:
-                        List<Product> oppoProducts =
-                                productList.stream()
-                                        .filter(product -> product.getBrand().equals("OPPO"))
-                                        .collect(Collectors.toList());
-
-                        textInputEditTextSearch.setText("");
-                        brandProductsList = oppoProducts;
-                        productsAdapter.submitList(oppoProducts);
-                        break;
-                }
-
+                changeListOfProducts(tab.getPosition());
             }
 
             @Override
@@ -146,7 +120,7 @@ public class HomeFragment extends Fragment {
         });
 
         imgSandwich.setOnClickListener(item -> {
-           drawerLayout.open();
+            drawerLayout.open();
         });
 
         productsAdapter.setOnItemClickListener(item -> {
@@ -187,4 +161,57 @@ public class HomeFragment extends Fragment {
 
         rvProducts.setLayoutManager(gridLayoutManager);
     }
+
+    private void changeListOfProducts(int tabPosition) {
+        switch (tabPosition) {
+
+            case 0:
+                List<Product> appleProducts =
+                        productList.stream()
+                                .filter(product -> product.getBrand().equals("Apple"))
+                                .collect(Collectors.toList());
+
+                textInputEditTextSearch.setText("");
+                brandProductsList = appleProducts;
+                productsAdapter.submitList(appleProducts);
+                break;
+            case 1:
+                List<Product> samsungProducts =
+                        productList.stream()
+                                .filter(product -> product.getBrand().equals("Samsung"))
+                                .collect(Collectors.toList());
+
+                textInputEditTextSearch.setText("");
+                brandProductsList = samsungProducts;
+                productsAdapter.submitList(samsungProducts);
+                break;
+            case 2:
+                List<Product> huaweiProducts =
+                        productList.stream()
+                                .filter(product -> product.getBrand().equals("Huawei"))
+                                .collect(Collectors.toList());
+
+                textInputEditTextSearch.setText("");
+                brandProductsList = huaweiProducts;
+                productsAdapter.submitList(huaweiProducts);
+                break;
+            case 3:
+                List<Product> oppoProducts =
+                        productList.stream()
+                                .filter(product -> product.getBrand().equals("OPPO"))
+                                .collect(Collectors.toList());
+
+                textInputEditTextSearch.setText("");
+                brandProductsList = oppoProducts;
+                productsAdapter.submitList(oppoProducts);
+                break;
+        }
+    }
+
+    private void changeStatusBarColor(int color) {
+        requireActivity().getWindow().setStatusBarColor(
+                requireContext().getResources().getColor(color, requireContext().getTheme())
+        );
+    }
+
 }

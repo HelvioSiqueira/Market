@@ -14,7 +14,7 @@
 
         <item name="android:fontFamily">@font/raleway</item>
         <item name="android:textColor">@color/black</item>
-
+        <item name="android:windowBackground">@color/white</item>
 
         <item name="android:windowLightStatusBar">true</item>
     </style>
@@ -34,6 +34,10 @@
 
     <style name="StyleBack">
         <item name="android:src">@drawable/arrow</item>
+    </style>
+
+    <style name="BackgroundParentStyle">
+        <item name="android:background">@color/white</item>
     </style>
 
 </resources>
