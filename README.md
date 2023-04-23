@@ -7,8 +7,8 @@ obter informações sobre alguns produtos.
 
 <ul>
   <li> Lista os produtos filtrado por marca <br>
-    <img width=24% height=auto src="img/img1.jpg"/>
-    <img width=24% height=auto src="img/img6.png"/>
+    <img width=24% height=auto src="img/img1.pgn"/>
+    <img width=24% height=auto src="img/img6.jpg"/>
   <li> Pesquisa de produtos
   <li> Exibe os detalhes do produto ao clicar nele <br>
     <img width=24% height=auto src="img/img2.png"/>
