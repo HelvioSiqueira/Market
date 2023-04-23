@@ -1,6 +1,7 @@
 package com.helvio.market.presentation.ui.wishlist;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,6 +20,7 @@ import com.helvio.market.R;
 import com.helvio.market.WishListHelper;
 import com.helvio.market.databinding.WishListFragmentBinding;
 import com.helvio.market.presentation.adapter.ProductsAdapter;
+import com.helvio.market.presentation.ui.home.HomeFragmentDirections;
 
 public class WishListFragment extends Fragment {
 
@@ -40,6 +44,12 @@ public class WishListFragment extends Fragment {
 
         imgSandwich.setOnClickListener(item -> {
             drawerLayout.open();
+        });
+
+        productsAdapter.setOnItemClickListener(item -> {
+            NavDirections action =
+                    WishListFragmentDirections.actionWishListFragmentToProductFragment(item.getId());
+            Navigation.findNavController(binding.getRoot()).navigate(action);
         });
 
         return binding.getRoot();

@@ -26,8 +26,7 @@
                 android:id="@+id/imgProduct"
                 android:layout_width="141dp"
                 android:layout_height="101dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_launcher_background" />
+                android:scaleType="centerCrop" />
 
         </androidx.cardview.widget.CardView>
 

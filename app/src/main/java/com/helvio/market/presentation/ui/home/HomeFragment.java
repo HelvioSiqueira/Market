@@ -124,8 +124,6 @@ public class HomeFragment extends Fragment {
         });
 
         productsAdapter.setOnItemClickListener(item -> {
-            Log.d("HSV", item.getTitle());
-
             NavDirections action =
                     HomeFragmentDirections.actionHomeFragmentToProductFragment(item.getId());
             Navigation.findNavController(binding.getRoot()).navigate(action);
