@@ -1,9 +1,12 @@
 package com.helvio.market;
 
+import android.util.Log;
+
 import com.helvio.market.domain.model.Product;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class WishListHelper {
 
@@ -18,5 +21,10 @@ public class WishListHelper {
 
     public static void addProductInWishList(Product product) {
         wishProductsList.add(product);
+    }
+
+    public static void removeProductFromWishList(Product product) {
+        Optional<Product> find = wishProductsList.stream().filter(p -> p.getId() == product.getId()).findAny();
+        find.ifPresent(value -> wishProductsList.remove(value));
     }
 }

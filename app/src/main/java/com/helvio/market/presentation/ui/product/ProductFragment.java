@@ -1,6 +1,8 @@
 package com.helvio.market.presentation.ui.product;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +24,8 @@ import com.helvio.market.databinding.ProductFragmentBinding;
 import com.helvio.market.domain.model.CartProduct;
 import com.helvio.market.domain.model.Product;
 
+import java.util.Optional;
+
 public class ProductFragment extends Fragment {
 
     private final DummyJsonApiImpl api = new DummyJsonApiImpl();
@@ -29,6 +33,7 @@ public class ProductFragment extends Fragment {
     private final ProductViewModel viewModel = new ProductViewModel(repository);
 
     private ProductFragmentBinding binding;
+    ImageView imgHeart;
 
     private Product receiveProduct;
 
@@ -38,7 +43,7 @@ public class ProductFragment extends Fragment {
 
         binding = ProductFragmentBinding.inflate(inflater);
         ImageView imgBack = binding.imgBack;
-        ImageView imgHeart = binding.imgHeart;
+        imgHeart = binding.imgHeart;
         Button btnAddToCart = binding.btnAddToCart;
 
         int productId = ProductFragmentArgs.fromBundle(getArguments()).getProductId();
@@ -50,7 +55,7 @@ public class ProductFragment extends Fragment {
         });
 
         imgHeart.setOnClickListener(view -> {
-            WishListHelper.addProductInWishList(receiveProduct);
+            disableOrEnableBtnHeart();
         });
 
         btnAddToCart.setOnClickListener(view -> {
@@ -60,12 +65,13 @@ public class ProductFragment extends Fragment {
         viewModel.product.observe(getViewLifecycleOwner(), product -> {
             receiveProduct = product;
             fillProductFragment(product);
+            setupImgHeartOnEnter();
         });
 
         return binding.getRoot();
     }
 
-    private void fillProductFragment(Product product){
+    private void fillProductFragment(Product product) {
         Log.d("HSV", product.getCategory());
 
         ImageView imgProduct = binding.imgProduct;
@@ -79,7 +85,7 @@ public class ProductFragment extends Fragment {
         binding.txtPriceProduct.setText(requireContext().getResources().getString(R.string.txt_price, product.getPrice()));
     }
 
-    private CartProduct toCartProduct(Product product){
+    private CartProduct toCartProduct(Product product) {
 
         return new CartProduct(
                 product.getId(),
@@ -89,5 +95,46 @@ public class ProductFragment extends Fragment {
                 product.getThumbnail(),
                 1
         );
+    }
+
+    private void disableOrEnableBtnHeart() {
+
+        Optional<Product> find =
+                WishListHelper.getWishProductsList().stream()
+                        .filter(p -> p.getId() == receiveProduct.getId())
+                        .findAny();
+
+        if (find.isPresent()) {
+            int currentLightMode = requireContext().getResources().getConfiguration().uiMode;
+
+            if (currentLightMode == 33) {
+                imgHeart.setImageDrawable(getResources().getDrawable(R.drawable.heart_night));
+            } else {
+                imgHeart.setImageDrawable(getResources().getDrawable(R.drawable.heart));
+            }
+            WishListHelper.removeProductFromWishList(receiveProduct);
+        } else {
+            imgHeart.setImageDrawable(getResources().getDrawable(R.drawable.heart_disable));
+            WishListHelper.addProductInWishList(receiveProduct);
+        }
+    }
+
+    private void setupImgHeartOnEnter() {
+        Optional<Product> find =
+                WishListHelper.getWishProductsList().stream()
+                        .filter(p -> p.getId() == receiveProduct.getId())
+                        .findAny();
+
+        if (find.isPresent()) {
+            imgHeart.setImageDrawable(getResources().getDrawable(R.drawable.heart_disable));
+        } else {
+            int currentLightMode = requireContext().getResources().getConfiguration().uiMode;
+
+            if (currentLightMode == 33) {
+                imgHeart.setImageDrawable(getResources().getDrawable(R.drawable.heart_night));
+            } else {
+                imgHeart.setImageDrawable(getResources().getDrawable(R.drawable.heart));
+            }
+        }
     }
 }
