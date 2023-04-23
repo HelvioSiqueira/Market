@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -60,6 +61,7 @@ public class ProductFragment extends Fragment {
 
         btnAddToCart.setOnClickListener(view -> {
             CartProductHelper.addProductInCart(toCartProduct(receiveProduct));
+            Toast.makeText(requireContext(), "Successfully added", Toast.LENGTH_SHORT).show();
         });
 
         viewModel.product.observe(getViewLifecycleOwner(), product -> {

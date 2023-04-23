@@ -35,6 +35,7 @@ import com.helvio.market.presentation.adapter.ProductsAdapter;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 import dagger.hilt.android.AndroidEntryPoint;
@@ -97,7 +98,7 @@ public class HomeFragment extends Fragment {
             public void afterTextChanged(Editable editable) {
                 searchProductsList =
                         brandProductsList.stream()
-                                .filter(product -> product.getTitle().contains(editable.toString()))
+                                .filter(product -> product.getTitle().toUpperCase(Locale.ROOT).contains(editable.toString().toUpperCase()))
                                 .collect(Collectors.toList());
 
                 productsAdapter.submitList(searchProductsList);
